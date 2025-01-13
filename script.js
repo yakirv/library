@@ -13,7 +13,6 @@ function addBookToLibrary(BookName, author) {
   }
 
 
-  addBookToLibrary('The Bible', 'God')
 function showBooks()
 {
     myLibrary.forEach(book => {
@@ -25,6 +24,13 @@ showBooks()
 
 const showButton = document.getElementById("show-button");
 showButton.addEventListener('click', function(){
+
+    const oldContainer = document.getElementById('library-container');
+    if(document.body.contains(oldContainer))
+    {
+        document.body.removeChild(oldContainer);
+    }
+   
     const libraryContainer = document.createElement('div');
     libraryContainer.id = 'library-container';
     document.body.appendChild(libraryContainer);
@@ -36,11 +42,31 @@ showButton.addEventListener('click', function(){
         libraryContainer.appendChild(bookElement);
     });
 })
-
-const AddButton = document.getElementById("add-button");
-const testDiv = document.getElementById("divTest");
+// ---------------open the new book form---------------
+const AddButton = document.getElementById("add-button"); 
+const formContainer = document.getElementById("form-container");
 AddButton.addEventListener('click', function()
 {
-   testDiv.style.display ='block'
+    if (formContainer.style.display ==='none')
+    {
+        formContainer.style.display ='block' 
+    }else if (formContainer.style.display ==='block')
+    {
+        formContainer.style.display ='none'  
+    }
     
 })
+
+// ---------------Adding new book---------------
+const confirmButton = document.getElementById("confirm");
+confirmButton.addEventListener('click',function()
+{
+    const newBookTitle = document.getElementById("title").value;
+    const newBookAuthor = document.getElementById("author").value;
+    addBookToLibrary(newBookTitle,newBookAuthor);
+    
+    formContainer.style.display ='none' ;
+    /* const succesMessage = document.createElement('div');
+    document.body.appendChild(succesMessage);
+    succesMessage.textContent = 'Book added succesfully!' */
+});
