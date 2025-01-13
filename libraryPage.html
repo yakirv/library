@@ -8,15 +8,45 @@
    
 </head>
 <body>
-    <h1>Welcome to our Library</h1>
-     <button id="add-button">Add new book</button>
-     <div id="form-container" style="display: none;">
-            <input type="text" id="title">
-            <input type="text" id="author">
-            <!-- <input type="text" id="number-of-pages"> -->
-            <button id="confirm">Add new book to the library</button>
-     </div>
-     <button id="show-button">Show Books</button>
+    <div id="sidebar">
+        <h1 id="sidebar-header">Welcome to our Library</h1>
+        <ul class="sidebar-items">
+            <li><button id="home-button">Home</button></li>
+            <li><button id="profile-button">Profile</button></li>
+            <li><button id="settigs-button">Settings</button></li>
+            <li><button id="add-button">Add new book</button></li>
+        </ul>
+         <div id="form-container" style="display: none;">
+                <div class="book-input">
+                    <label for="title">Book Title</label>
+                    <input type="text" id="title">
+                </div>
+                <div class="book-input">
+                    <label for="author">Book Author</label>
+                    <input type="text" id="author">
+                </div>
+                <div class="book-input">
+                    <label for="pages">Number of pages</label>
+                    <input type="text" id="pages">
+                </div>
+                <!-- <input type="text" id="number-of-pages"> -->
+                <button id="confirm">Add new book to the library</button>
+         </div>
+    </div>
+    <div id="main-content">
+    <div class="empyt-library-message" id="emptyMessage">
+        No books Yet
+        <button id="show-button">Click here to Show Books</button>
+    </div>
+    <div id="library-container">
+       <button id="update-button">Update</button>
+       <div class="book-card">bye</div>
+    </div>
+    </div>
+   
+     <div id="blog"></div>
     <script src="script.js"></script>
 </body>
 </html>
+
+

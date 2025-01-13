@@ -1,59 +1,81 @@
-const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling'},{'BookName': 'Song of ice and fire', 'author':'j.r.r Martin'}];
+const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250'},{'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550'}];
 
 
-function Book(BookName, author) {
+function Book(BookName, author, pages) {
     this.BookName = BookName;
     this.author = author;
+    this.pages = pages;
+    
 }
 
-function addBookToLibrary(BookName, author) {
+function addBookToLibrary(BookName, author, pages) {
    
-    let newBook = new Book(BookName, author)
+    let newBook = new Book(BookName, author,pages)
     myLibrary.push(newBook)
   }
 
 
-function showBooks()
-{
-    myLibrary.forEach(book => {
-        console.log(`The title is ${book.BookName} by ${book.author}`)
-    });
-}
- 
-showBooks()
-
+// ---------------Show the books in the array---------------
 const showButton = document.getElementById("show-button");
+const updateButton = document.getElementById("update-button");
+const mainContent = document.getElementById("main-content");
+const libraryContainer = document.getElementById('library-container');
+const emptyLibrary = document.getElementById('emptyMessage');
 showButton.addEventListener('click', function(){
-
-    const oldContainer = document.getElementById('library-container');
-    if(document.body.contains(oldContainer))
-    {
-        document.body.removeChild(oldContainer);
-    }
-   
-    const libraryContainer = document.createElement('div');
-    libraryContainer.id = 'library-container';
-    document.body.appendChild(libraryContainer);
-    
-    myLibrary.forEach(book => {
+    libraryContainer.style.display = 'grid';
+    emptyLibrary.style.display = 'none';
+    updateButton.style.display = 'inline-block';
+  function addBookCard(){myLibrary.forEach(book => {
         const bookElement = document.createElement('div');
         bookElement.className = 'book-card'
-        bookElement.textContent = `The title is ${book.BookName} by ${book.author}`;
+        bookElement.textContent = `The title is ${book.BookName} by ${book.author}, have ${book.pages} pages`;
         libraryContainer.appendChild(bookElement);
-    });
+    });} 
+   addBookCard()
 })
+// ---------------Refresh the book lists---------------
+
+updateButton.addEventListener('click', function()
+{   
+    const bookElement1 = document.getElementsByClassName("book-card");
+    if(bookElement1)
+    {
+        updateButton.innerHTML = 'success';
+       
+        console.log(bookElement1)
+        bookElement1.innerHTML = 'hi';
+       
+        function addBookCard(){myLibrary.forEach(book => {
+            const bookElement = document.createElement('div');
+            bookElement.className = 'book-card'
+            bookElement.textContent = `The title is ${book.BookName} by ${book.author}, have ${book.pages} pages`;
+            libraryContainer.appendChild(bookElement);
+        });}
+      
+    } 
+   
+    
+})
+
+
+
 // ---------------open the new book form---------------
 const AddButton = document.getElementById("add-button"); 
 const formContainer = document.getElementById("form-container");
 AddButton.addEventListener('click', function()
 {
+   
     if (formContainer.style.display ==='none')
     {
-        formContainer.style.display ='block' 
-    }else if (formContainer.style.display ==='block')
+        formContainer.style.display ='flex';
+        AddButton.style.display = 'none';
+
+    }else if (formContainer.style.display ==='flex')
     {
-        formContainer.style.display ='none'  
+        formContainer.style.display ='none';
+        AddButton.style.display = 'flex';
     }
+    
     
 })
 
@@ -61,12 +83,13 @@ AddButton.addEventListener('click', function()
 const confirmButton = document.getElementById("confirm");
 confirmButton.addEventListener('click',function()
 {
+
     const newBookTitle = document.getElementById("title").value;
     const newBookAuthor = document.getElementById("author").value;
-    addBookToLibrary(newBookTitle,newBookAuthor);
-    
+    const newBookpPages = document.getElementById("pages").value;
+    addBookToLibrary(newBookTitle,newBookAuthor,newBookpPages);
+  //addBookCard();
     formContainer.style.display ='none' ;
-    /* const succesMessage = document.createElement('div');
-    document.body.appendChild(succesMessage);
-    succesMessage.textContent = 'Book added succesfully!' */
+    AddButton.style.display = 'block';
+    
 });
