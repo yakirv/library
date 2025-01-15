@@ -39,16 +39,25 @@ body{
 
 #library-container
 {
-
     width: 90%;
-    /* display: grid; */
-    display: none;
+    display: none; 
+    grid-template-columns: auto;
+    gap: 10px;
+    justify-items: center;
+    
+}
+#books-container
+{
+    width: 90%;
+    display: grid; 
+    
     grid-template-columns: auto;
     gap: 10px;
     
 }
 .empyt-library-message
 {
+    visibility: visible;
     background-color: beige;
     font-size: 5em;
     border: 1px solid black;
@@ -117,8 +126,4 @@ input
     border: 2px solid black;
     border-radius: 15px;
     margin-top: 0.5em;
-}
-#update-button
-{
-    display: none;
 }
