@@ -20,6 +20,7 @@ const showButton = document.getElementById("show-button");
 const updateButton = document.getElementById("update-button");
 const mainContent = document.getElementById("main-content");
 const libraryContainer = document.getElementById('library-container');
+const booksContainer = document.getElementById('books-container');
 const emptyLibrary = document.getElementById('emptyMessage');
 showButton.addEventListener('click', function(){
     libraryContainer.style.display = 'grid';
@@ -29,28 +30,33 @@ showButton.addEventListener('click', function(){
         const bookElement = document.createElement('div');
         bookElement.className = 'book-card'
         bookElement.textContent = `The title is ${book.BookName} by ${book.author}, have ${book.pages} pages`;
-        libraryContainer.appendChild(bookElement);
+        booksContainer.appendChild(bookElement);
     });} 
    addBookCard()
 })
 // ---------------Refresh the book lists---------------
 
 updateButton.addEventListener('click', function()
-{   
-    const bookElement1 = document.getElementsByClassName("book-card");
-    if(bookElement1)
+{  
+     const libraryContainer = document.getElementById('library-container');
+    const bookElement = document.getElementById("books-container");
+    if(bookElement)
     {
-        updateButton.innerHTML = 'success';
-       
-        console.log(bookElement1)
-        bookElement1.innerHTML = 'hi';
+       // updateButton.innerHTML = 'success';
+        libraryContainer.removeChild(bookElement);
+        console.log(bookElement)
+        const newEl = document.createElement('div');
+        //newEl.className ='books-container';
+        newEl.id = 'books-container';
+       libraryContainer.appendChild(newEl);
        
         function addBookCard(){myLibrary.forEach(book => {
             const bookElement = document.createElement('div');
             bookElement.className = 'book-card'
             bookElement.textContent = `The title is ${book.BookName} by ${book.author}, have ${book.pages} pages`;
-            libraryContainer.appendChild(bookElement);
+            newEl.appendChild(bookElement);
         });}
+        addBookCard();
       
     } 
    
@@ -91,5 +97,7 @@ confirmButton.addEventListener('click',function()
   //addBookCard();
     formContainer.style.display ='none' ;
     AddButton.style.display = 'block';
-    
+    const CleanBookTitle = document.getElementById("title").value = '' ;
+    const CleanBookAuthor = document.getElementById("author").value = '';
+    const CleanBookpPages = document.getElementById("pages").value = '';
 });
