@@ -1,0 +1,148 @@
+body{
+   
+    margin: 0px;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: repeat(12 ,1fr);
+    grid-template-rows: 100px 3fr  100px;
+}
+.header
+{
+    background-color: lightblue;
+    grid-column: 3 / 14;
+    display: flex;
+    
+}
+.search-box
+{
+    height: 100px;
+    padding: 20px;
+
+}
+.sidebaer
+{
+    background-color: lightslategray;
+    grid-column: 1 /3;
+    grid-row: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+.main-content
+{
+    background-color: lightgreen;
+    grid-column: 3 / 14;
+    grid-row:  2 / 3;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(6 ,1fr);
+}
+
+.footer
+{
+    background-color: lightcoral;
+    grid-column: 1 / 14;
+    
+}
+.sidebar-items
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+li
+{
+    list-style: none;
+   
+}
+li button
+{
+    border-style: none;
+    background-color: transparent;
+    color: white;
+    font-weight: 800;
+    font-size: 1.1em;
+}
+.your-books
+{
+    background-color: white;
+     width: 90em; 
+    grid-column: 2 / 6;
+    margin-top: 3em;
+    border-radius: 30px;
+    padding: 1em;    
+}
+.your-books-header
+{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+
+}
+.add-new-book
+{
+    grid-column: 4 / 5;
+    background-color: azure;
+    width: 8em;
+    height: 3em;
+    border-radius: 30px;
+    margin-left: 15em;
+}
+.your-books-list
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 250px));
+    
+}
+
+.book-card
+{
+    background-color: lightskyblue;
+    border-radius: 20px;
+    height: 300px;
+    box-shadow:   0px 0px  10px 1px black; 
+    margin: 20px;
+    padding: 0.3em;
+}
+.book-image-container
+{
+    background-color: antiquewhite;
+    border-radius: 20px;
+    width: 100%;
+    height: 150px;
+    overflow: hidden; 
+    
+}
+.book-image
+{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    
+}
+.book-card-content
+{
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 50px 50px;
+    align-items: center;
+    font-family: sans-serif;
+}
+.book-card h4
+{
+    font-weight: 800;
+    margin-left: 10px;
+}
+.title
+{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.author
+{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}

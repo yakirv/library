@@ -3,49 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Page</title>
-    <link rel="stylesheet" href="styles.css">
-   
+    <title>New Library Page</title>
+    <link rel="stylesheet" href="newStyles.css">
 </head>
 <body>
-    <div id="sidebar">
-        <h1 id="sidebar-header">Welcome to our Library</h1>
-        <ul class="sidebar-items">
-            <li><button id="home-button">Home</button></li>
-            <li><button id="profile-button">Profile</button></li>
-            <li><button id="settigs-button">Settings</button></li>
-            <li><button id="add-button">Add new book</button></li>
-        </ul>
-         <div id="form-container" style="display: none;">
-                <div class="book-input">
-                    <label for="title">Book Title</label>
-                    <input type="text" id="title">
-                </div>
-                <div class="book-input">
-                    <label for="author">Book Author</label>
-                    <input type="text" id="author">
-                </div>
-                <div class="book-input">
-                    <label for="pages">Number of pages</label>
-                    <input type="text" id="pages" minlength="1">
-                </div>
-                <button id="confirm">Add new book to the library</button>
-         </div>
+    <header class="header">
+        <h1>Welcome to the New Library Page</h1>
+        <div class="search-box">
+            <input type="text">
+        </div>
+        <p id="output"></p>
+    </header>
+    <div class="sidebaer">
+        <h1 id="sidebar-header">My Library</h1>
+        <div class="sidebaer-action">
+            <ul class="sidebar-items">
+                <li><button id="home-button">Home</button></li>
+                <li><button id="profile-button">Profile</button></li>
+                <li><button id="settigs-button">Settings</button></li>
+                <li><button id="discover-button">Discover</button></li>
+            </ul>
+        </div>
     </div>
-    <div id="main-content">
-    <div class="empyt-library-message" id="emptyMessage">
-        No books Yet
-        <button id="show-button">Click here to Show Books</button>
-    </div>
-    <div id="library-container">
-      <h1 id="list-books-header">Your Books List</h1>
-       <div class="books-container" id="books-container"></div>
-    </div>
-    </div>
-   
-     <div id="blog"></div>
-    <script src="script.js"></script>
+    <main class="main-content">  
+       <div class="your-books">
+        <div class="your-books-header">
+            <h3>Your Books</h3>
+            <button class="add-new-book" id="add-new-book">Add new book</button>
+        </div>
+        <div class="your-books-list" id="your-books-list"> </div>
+
+        </div>
+        
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2023 Library. All rights reserved.</p>
+    </footer>
+    <dialog id="newBookPopup">
+        <form method="dialog" id='newBookForm'>
+            <label for="new-book-name">Book Name:</label>
+            <input type="text" id="new-book-name" name = "book-name" >
+
+            <label for="new-book-author">Ahutor Name:</label>
+            <input type="text" id="new-book-author" name = "book-author">
+
+            <label for="new-book-pages">Number of pages:</label>
+            <input type="text" id="new-book-pages" name = 'book-pages'>
+            <div>
+                <button value="cancel" >Cancel</button>
+                <button id="confirmBtn" type="submit" value="Confirm">Confirm</button>
+              </div>
+        </form>
+    </dialog>
+    <script src="/newScript.js"></script>
 </body>
 </html>
-
-

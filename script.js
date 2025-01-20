@@ -1,22 +1,23 @@
 /*  const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250'},{'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550'}];
  */ 
 /* const myLibrary = []; */
-const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250'},
-    {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550'},
-    {'BookName': 'mosese', 'author':'j.r.r Martin', 'pages':'2,550'},
-    {'BookName': 'yesman', 'author':'j.r.r Martin', 'pages':'2,550'}];
+const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250','read':true},
+    {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':true},
+    {'BookName': 'mosese', 'author':'j.r.r Martin', 'pages':'2,550','read':false},
+    {'BookName': 'yesman', 'author':'j.r.r Martin', 'pages':'2,550','read':true}];
  
 
-function Book(BookName, author, pages) {
+function Book(BookName, author, pages,read) {
     this.BookName = BookName;
     this.author = author;
     this.pages = pages;
+    this.read = read;
     
 }
 
-function addBookToLibrary(BookName, author, pages) {
+function addBookToLibrary(BookName, author, pages, read) {
    
-    let newBook = new Book(BookName, author,pages)
+    let newBook = new Book(BookName, author,pages,read)
     myLibrary.push(newBook)
   }
 function createNewBookCardElement()
@@ -33,16 +34,33 @@ function createNewBookCardElement()
 function addBookCard(actionType){myLibrary.forEach((book,index) => {
     const bookElement = document.createElement('div');
     const removeButton = document.createElement('button');
+    const readButton = document.createElement('button');
     bookElement.className = `book-card-${index}`;
     bookElement.id = `book-card-${index}`;
+    if (book.read)
+    {
+         bookRead = 'already read';
+         bookElement.style.backgroundColor = '#4caf50';
+         readButton.style.display = 'none';
+    }
+    else
+    {
+         bookRead = "didn't read";
+         bookElement.style.backgroundColor = '#aa2e25';
+         
+    }
     removeButton.textContent = 'Remove Book';
+    readButton.textContent = 'Sign as read';
     removeButton.dataset.index = index;
-    bookElement.textContent = `The title is ${book.BookName} by ${book.author}, have ${book.pages} pages the index is ${book.BookName}`;
+    readButton.dataset.index = index;
+    bookElement.textContent = `The title is ${book.BookName} by ${book.author}, have ${book.pages} pages the index is ${book.BookName} and you ${bookRead} that book`;
     removeButton.className = `remove-book`;
+    removeButton.className = `read-book`;
     if (actionType == 1 )
     {
         booksContainer.appendChild(bookElement);
         bookElement.appendChild(removeButton);
+        bookElement.appendChild(readButton);
         console.log(myLibrary);
         removeButton.addEventListener('click', (event) => {
             const clickedElement = event.target;
@@ -55,6 +73,16 @@ function addBookCard(actionType){myLibrary.forEach((book,index) => {
                   console.log("Element not found")
               }
         }) 
+        readButton.addEventListener('click',(event)=>{
+            const clickedElement = event.target;
+            const readOrNot = clickedElement.dataset.index;
+            if (book.read == false)
+            {
+                myLibrary[index].read = true;
+                bookElement.style.backgroundColor = '#4caf50';
+                readButton.style.display = 'none';
+            }
+        })
     }
     else if (actionType == 2)
     {
@@ -62,6 +90,8 @@ function addBookCard(actionType){myLibrary.forEach((book,index) => {
         const newEl = document.getElementById('books-container');
         newEl.appendChild(bookElement);
         bookElement.appendChild(removeButton);
+        bookElement.appendChild(readButton);
+
         removeButton.addEventListener('click', (event) => {
             const clickedElement = event.target;
             const itemToRemove = clickedElement.dataset.index;
@@ -73,6 +103,17 @@ function addBookCard(actionType){myLibrary.forEach((book,index) => {
                   console.log("Element not found")
               }
         }) 
+
+          readButton.addEventListener('click',(event)=>{
+            const clickedElement = event.target;
+            const readOrNot = clickedElement.dataset.index;
+            if (book.read == false)
+            {
+                myLibrary[index].read = true;
+                bookElement.style.backgroundColor = '#4caf50';
+                readButton.style.display = 'none';
+            }
+        })
     }
 });} 
 
@@ -103,6 +144,8 @@ function cleanForm()
     const CleanBookTitle = document.getElementById("title").value = '' ;
     const CleanBookAuthor = document.getElementById("author").value = '';
     const CleanBookpPages = document.getElementById("pages").value = '';
+    const CleanBookpRead = document.getElementById("read").checked = '';
+
 }
 
 
@@ -135,7 +178,9 @@ confirmButton.addEventListener('click',function()
     const newBookTitle = document.getElementById("title").value;
     const newBookAuthor = document.getElementById("author").value;
     const newBookpPages = document.getElementById("pages").value;
-    addBookToLibrary(newBookTitle,newBookAuthor,newBookpPages);
+    const newBookRead = document.getElementById('read').checked ? true : false;;
+    
+    addBookToLibrary(newBookTitle,newBookAuthor,newBookpPages,newBookRead);
     formContainer.style.display ='none' ;
     AddButton.style.display = 'block';
     cleanForm();
