@@ -1,7 +1,11 @@
-/* const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250'},{'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550'}];
+/*  const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250'},{'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550'}];
  */ 
-const myLibrary = [];
-
+/* const myLibrary = []; */
+const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250'},
+    {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550'},
+    {'BookName': 'mosese', 'author':'j.r.r Martin', 'pages':'2,550'},
+    {'BookName': 'yesman', 'author':'j.r.r Martin', 'pages':'2,550'}];
+ 
 
 function Book(BookName, author, pages) {
     this.BookName = BookName;
@@ -24,24 +28,56 @@ function createNewBookCardElement()
     newEl.id = 'books-container';
     libraryContainer.appendChild(newEl);
 };
-function addBookCard(actionType){myLibrary.forEach(book => {
+
+
+function addBookCard(actionType){myLibrary.forEach((book,index) => {
     const bookElement = document.createElement('div');
-    bookElement.className = 'book-card'
-    bookElement.textContent = `The title is ${book.BookName} by ${book.author}, have ${book.pages} pages`;
+    const removeButton = document.createElement('button');
+    bookElement.className = `book-card-${index}`;
+    bookElement.id = `book-card-${index}`;
+    removeButton.textContent = 'Remove Book';
+    removeButton.dataset.index = index;
+    bookElement.textContent = `The title is ${book.BookName} by ${book.author}, have ${book.pages} pages the index is ${book.BookName}`;
+    removeButton.className = `remove-book`;
     if (actionType == 1 )
     {
         booksContainer.appendChild(bookElement);
+        bookElement.appendChild(removeButton);
+        console.log(myLibrary);
+        removeButton.addEventListener('click', (event) => {
+            const clickedElement = event.target;
+            const itemToRemove = clickedElement.dataset.index;
+            const bookCardToRemove = document.getElementById(`book-card-${index}`);
+            delete myLibrary[parseInt(itemToRemove)];
+            if (bookCardToRemove){
+                bookCardToRemove.remove();
+              } else {
+                  console.log("Element not found")
+              }
+        }) 
     }
     else if (actionType == 2)
     {
+        console.log(myLibrary);
         const newEl = document.getElementById('books-container');
         newEl.appendChild(bookElement);
+        bookElement.appendChild(removeButton);
+        removeButton.addEventListener('click', (event) => {
+            const clickedElement = event.target;
+            const itemToRemove = clickedElement.dataset.index;
+            const bookCardToRemove = document.getElementById(`book-card-${index}`);
+            delete myLibrary[parseInt(itemToRemove)];
+            if (bookCardToRemove){
+                bookCardToRemove.remove();
+              } else {
+                  console.log("Element not found")
+              }
+        }) 
     }
 });} 
 
 
 const showButton = document.getElementById("show-button");
-const mainContent = document.getElementById("main-content");
 const libraryContainer = document.getElementById('library-container');
 const booksContainer = document.getElementById('books-container');
 const emptyLibrary = document.getElementById('emptyMessage');
@@ -102,7 +138,6 @@ confirmButton.addEventListener('click',function()
     addBookToLibrary(newBookTitle,newBookAuthor,newBookpPages);
     formContainer.style.display ='none' ;
     AddButton.style.display = 'block';
-   
     cleanForm();
     createNewBookCardElement();
     emptyLibrary.style.display = 'none';
@@ -110,3 +145,6 @@ confirmButton.addEventListener('click',function()
     addBookCard(2);
   
 });
+
+
+
