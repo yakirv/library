@@ -10,7 +10,7 @@ const newBookForm = document.getElementById('newBookForm');
 const myLibraryButton = document.getElementById('my-libray-button');
 
 const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250','read':true, 'img':'/bookImages/ironMan.jpg'},
-    {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':true, 'img':'/bookImages/ironMan.jpg'}
+    {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':false, 'img':'/bookImages/ironMan.jpg'}
 ];
  
 function addBookToLibrary(BookName, author, pages ,read, img, index) {
@@ -99,10 +99,47 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
         delete myLibrary[(parseInt(itemToRemove))];
         const elementToRemove = document.getElementById(`book-card-${index}`);
         elementToRemove.remove();
-        console.log(myLibrary);
+        
     });
 
-
+    if (book.read)
+    {
+        const bookRead = document.createElement('button');
+        bookRead.id = `book-read-${index}`;
+        bookRead.dataset.index = index;
+        bookRead.textContent = 'Read';
+        bookImgContainer.style.backgroundColor = '#A4E0CA';
+        bookRead.style.backgroundColor = '#A4E0CA';
+        bookRead.style.marginLeft = '60px'
+        bookCardActions.appendChild(bookRead);
+        bookRead.addEventListener('click', (event)=>
+            {
+                const clickedElement = event.target;
+                const itemToMdify = clickedElement.dataset.index;
+                const libraryItem = myLibrary[(parseInt(itemToMdify))]
+                libraryItem.read =false;
+                addBookCard()
+            })
+    }else 
+    {
+        const bookNotRead = document.createElement('button');
+        bookNotRead.id = `book-not-read-${index}`;
+        bookNotRead.dataset.index = index;
+        bookNotRead.textContent = 'Mark as read';
+        bookImgContainer.style.backgroundColor = '#D75B69';
+        bookNotRead.style.backgroundColor = '#D75B69';
+        bookNotRead.style.marginLeft = '30px'
+        bookCardActions.appendChild(bookNotRead);
+        bookNotRead.addEventListener('click', (event)=>
+        {
+            const clickedElement = event.target;
+            const itemToMdify = clickedElement.dataset.index;
+            const libraryItem = myLibrary[(parseInt(itemToMdify))]
+            libraryItem.read =true;
+            addBookCard()
+        })
+        
+    }
 
 
 
@@ -113,12 +150,12 @@ addBookCard()
 
 myLibraryButton.addEventListener('click', ()=> { // my books button
     addBookCard();
-    console.log('My library CLICKED');
+
 });
 
 //--------------Modal--------------
 addBookButton.addEventListener("click", () => {
-    console.log('button clicked');
+   
     newBookpopUp.showModal();
   });
 
@@ -129,7 +166,9 @@ addBookButton.addEventListener("click", () => {
     const userBookName = formData.get('book-name');
     const userBookAuthor = formData.get('book-author');
     const userBookPages = formData.get('book-pages');
-    addBookToLibrary(userBookName, userBookAuthor,userBookPages, true, '/bookImages/ironMan.jpg');
+    const readQuestion = formData.get('read-question');
+    const userBookRead = readQuestion === '1' ? true : false;
+    addBookToLibrary(userBookName, userBookAuthor,userBookPages, userBookRead, '/bookImages/ironMan.jpg');
     addBookCard();
     newBookpopUp.close();
 });
