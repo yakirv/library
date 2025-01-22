@@ -7,6 +7,7 @@ const newBookTitle = document.getElementById('new-book-name');
 const newBookauthor= document.getElementById('new-book-author');
 const newBookPages = document.getElementById('new-book-pages');
 const newBookForm = document.getElementById('newBookForm');
+const myLibraryButton = document.getElementById('my-libray-button');
 
 const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250','read':true, 'img':'/bookImages/ironMan.jpg'},
     {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':true, 'img':'/bookImages/ironMan.jpg'}
@@ -38,10 +39,13 @@ function addBookToLibrary(BookName, author, pages, read, img) {
     let newBook = new Book(BookName, author,pages,read, img)
     myLibrary.push(newBook)
   }
-  
+
 //--------------Show the books from the array--------------
-  function addBookCard(){myLibrary.forEach((book,index) => {
-   
+  function addBookCard(){
+    const bookElements = document.querySelectorAll('.book-card');
+    bookElements.forEach((e)=>
+    {e.remove()});
+    myLibrary.forEach((book,index) => {
     const bookElement = document.createElement('div');
     bookElement.className = `book-card`;
     
@@ -74,8 +78,9 @@ function addBookToLibrary(BookName, author, pages, read, img) {
     authorName.textContent = book.author;
     bookCardInfo.appendChild(tilteName);
     bookCardInfo.appendChild(authorName);
-   
     booksContainer.appendChild(bookElement);
+  
+    
 })};
 
 addBookCard()
@@ -94,6 +99,10 @@ addBookButton.addEventListener("click", () => {
     const userBookAuthor = formData.get('book-author');
     const userBookPages = formData.get('book-pages');
     addBookToLibrary(userBookName, userBookAuthor,userBookPages, true, '/bookImages/ironMan.jpg');
-    addBookCard()
+    addBookCard();
     newBookpopUp.close();
+});
+myLibraryButton.addEventListener('click', ()=> {
+    addBookCard();
+    console.log('My library CLICKED');
 });
