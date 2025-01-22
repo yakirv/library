@@ -13,9 +13,9 @@ const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':
     {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':true, 'img':'/bookImages/ironMan.jpg'}
 ];
  
-function addBookToLibrary(BookName, author, pages ,read, img) {
+function addBookToLibrary(BookName, author, pages ,read, img, index) {
    
-    let newBook = new Book(BookName, author,pages, read ,img)
+    let newBook = new Book(BookName, author,pages, read ,img, index)
     myLibrary.push(newBook)
   }
 
@@ -25,18 +25,19 @@ function addBookToLibrary(BookName, author, pages ,read, img) {
     {'BookName': 'yesman', 'author':'j.r.r Martin', 'pages':'2,550','read':true}]; */
  
 
-function Book(BookName, author, pages, read, img) {
+function Book(BookName, author, pages, read, img, index) {
     this.BookName = BookName;
     this.author = author;
     this.pages = pages;
     this.read = read;
     this.img = img;
+    this.index = index;
     
 }
 
-function addBookToLibrary(BookName, author, pages, read, img) {
+function addBookToLibrary(BookName, author, pages, read, img, index) {
    
-    let newBook = new Book(BookName, author,pages,read, img)
+    let newBook = new Book(BookName, author,pages,read, img, index)
     myLibrary.push(newBook)
   }
 
@@ -46,8 +47,10 @@ function addBookToLibrary(BookName, author, pages, read, img) {
     bookElements.forEach((e)=>
     {e.remove()});
     myLibrary.forEach((book,index) => {
+    book.index= index;
     const bookElement = document.createElement('div');
     bookElement.className = `book-card`;
+    bookElement.id = `book-card-${index}`;
     
     const bookImgContainer = document.createElement('div');
     bookImgContainer.className = 'book-image-container';
@@ -78,14 +81,42 @@ function addBookToLibrary(BookName, author, pages, read, img) {
     authorName.textContent = book.author;
     bookCardInfo.appendChild(tilteName);
     bookCardInfo.appendChild(authorName);
-    booksContainer.appendChild(bookElement);
-  
     
+    const bookCardActions = document.createElement('div');
+    bookCardActions.className = 'book-card-actions'; 
+    bookElement.appendChild(bookCardActions);
+    const removeButton = document.createElement('img');
+    removeButton.src ='/icons/delete.png'
+    removeButton.id = `remove-book-${index}`;
+    removeButton.dataset.index = index;
+    
+    bookCardActions.appendChild(removeButton);
+     
+    removeButton.addEventListener('click', (event)=>
+    {   
+        const clickedElement = event.target;
+        const itemToRemove = clickedElement.dataset.index;
+        delete myLibrary[(parseInt(itemToRemove))];
+        const elementToRemove = document.getElementById(`book-card-${index}`);
+        elementToRemove.remove();
+        console.log(myLibrary);
+    });
+
+
+
+
+
+    booksContainer.appendChild(bookElement);
 })};
 
 addBookCard()
 
+myLibraryButton.addEventListener('click', ()=> { // my books button
+    addBookCard();
+    console.log('My library CLICKED');
+});
 
+//--------------Modal--------------
 addBookButton.addEventListener("click", () => {
     console.log('button clicked');
     newBookpopUp.showModal();
@@ -102,7 +133,5 @@ addBookButton.addEventListener("click", () => {
     addBookCard();
     newBookpopUp.close();
 });
-myLibraryButton.addEventListener('click', ()=> {
-    addBookCard();
-    console.log('My library CLICKED');
-});
+
+

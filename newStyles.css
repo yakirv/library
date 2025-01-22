@@ -77,7 +77,7 @@ li button
 .your-books-header
 {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+   grid-template-columns: repeat(auto-fill,minmax(100px, 350px) );
     align-items: center;
 
 }
@@ -105,6 +105,11 @@ li button
     box-shadow:   0px 0px  10px 1px black; 
     margin: 20px;
     padding: 0.3em;
+}
+.book-card-actions img
+{
+    height: 2em;
+    
 }
 .book-image-container
 {
