@@ -54,16 +54,23 @@ body{
 li
 {
     list-style: none;
+    display: flex;
    
 }
 li button
 {
     border-style: none;
     background-color: transparent;
-    
     font-weight: 800;
     font-size: 1.1em;
+    
 }
+
+li img
+{
+    height: 30px;
+}
+
 .your-books
 {
     background-color: white;
@@ -101,7 +108,7 @@ li button
   
     border-radius: 20px;
     height: 300px;
-    box-shadow:   0px 0px  10px 1px black; 
+    box-shadow:  0px 0px  10px 1px black; 
     margin: 20px;
     padding: 0.3em;
 }
@@ -169,4 +176,8 @@ li button
 .book-card-actions button img
 {
     height: 15px;
+}
+button:hover    
+{
+    cursor: pointer;
 }
