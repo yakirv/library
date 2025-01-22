@@ -8,9 +8,8 @@
 </head>
 <body>
     <header class="header">
-        <h1>Welcome to the New Library Page</h1>
         <div class="search-box">
-            <input type="text">
+            <input type="text" placeholder="Search for a book...">
         </div>
         <p id="output"></p>
     </header>
@@ -54,20 +53,24 @@
     </footer>
     <dialog id="newBookPopup">
         <form method="dialog" id='newBookForm'>
+            <h1 id="dialog-header">Add new Book</h1>
             <label for="new-book-name">Book Name:</label>
-            <input type="text" id="new-book-name" name = "book-name" >
+            <input type="text" id="new-book-name" name = "book-name" placeholder="Enter book Name">
 
             <label for="new-book-author">Ahutor Name:</label>
-            <input type="text" id="new-book-author" name = "book-author">
+            <input type="text" id="new-book-author" name = "book-author" placeholder="Enter author name">
 
             <label for="new-book-pages">Number of pages:</label>
-            <input type="text" id="new-book-pages" name = 'book-pages'>
-            <p>Did you read that book?</p>
-            <input type="radio" id="book-read-or-not" name="read-question" value=1>
-            <label for="book-read-or-not">Yes</label>
-            <input type="radio" id="book-read-or-not" name="read-question" value="0"> 
-            <label for="book-read-or-not">No</label>
-            <div>
+            <input type="text" id="new-book-pages" name = 'book-pages' placeholder="Enter no. of pages">
+
+            <div id = 'toggle-contianer'>
+                <p>Did you read this book?</p>
+                <label class="toggle">
+                    <input type="checkbox" name = "read-question">
+                    <span class="slider"></span>
+                </label>
+            </div>
+                <div id = 'dialog-buttons'>
                 <button value="cancel" >Cancel</button>
                 <button id="confirmBtn" type="submit" value="Confirm">Confirm</button>
               </div>
