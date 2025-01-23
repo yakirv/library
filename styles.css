@@ -307,11 +307,18 @@ button:hover
 }
 #newBookForm
 {
-    height: 450px;
+    height: 600px;
     width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+.dialog-inputs
+{
+display: flex;
+flex-direction: column;
+gap: 1em;
+font-weight: 600;
 }
 #newBookPopup input
 {
@@ -390,4 +397,10 @@ button:hover
     font-weight: 700;
     padding: 1em;
     border-radius: 20px;    
+  }
+  #newBookForm #file-upload 
+  {
+    border: 0;
+    padding: 10px;
+    width: 40%;
   }

@@ -81,15 +81,16 @@
     <dialog id="newBookPopup">
         <form method="dialog" id='newBookForm'>
             <h1 id="dialog-header">Add new Book</h1>
-            <label for="new-book-name">Book Name:</label>
-            <input type="text" id="new-book-name" name = "book-name" placeholder="Enter book Name">
-
-            <label for="new-book-author">Ahutor Name:</label>
-            <input type="text" id="new-book-author" name = "book-author" placeholder="Enter author name">
-
-            <label for="new-book-pages">Number of pages:</label>
-            <input type="text" id="new-book-pages" name = 'book-pages' placeholder="Enter no. of pages">
-
+            <div class="dialog-inputs">
+                <label for="new-book-name">Book Name:</label>
+                <input type="text" id="new-book-name" name = "book-name" placeholder="Enter book Name">
+                <label for="new-book-author">Ahutor Name:</label>
+                <input type="text" id="new-book-author" name = "book-author" placeholder="Enter author name">
+                <label for="new-book-pages">Number of pages:</label>
+                <input type="text" id="new-book-pages" name = 'book-pages' placeholder="Enter no. of pages">
+                
+            </div>
+            <input type="file" accept="image/*" id="file-upload" name="file-upload">
             <div id = 'toggle-contianer'>
                 <p>Did you read this book?</p>
                 <label class="toggle">
