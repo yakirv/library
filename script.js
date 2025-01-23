@@ -164,8 +164,9 @@ addBookButton.addEventListener("click", () => {
     const userBookAuthor = formData.get('book-author');
     const userBookPages = formData.get('book-pages');
     const readQuestion = formData.get('read-question');
+    const uploadFile = formData.get('file-upload').name;
     const userBookRead = readQuestion === 'on' ? true : false;
-    addBookToLibrary(userBookName, userBookAuthor,userBookPages, userBookRead, '/bookImages/ironMan.jpg');
+    addBookToLibrary(userBookName, userBookAuthor,userBookPages, userBookRead,'/bookImages/book-placeholder.png');
     addBookCard();
     newBookpopUp.close();
 });
