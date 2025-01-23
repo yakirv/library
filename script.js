@@ -9,9 +9,8 @@ const newBookPages = document.getElementById('new-book-pages');
 const newBookForm = document.getElementById('newBookForm');
 const myLibraryButton = document.getElementById('my-libray-button');
 
-const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250','read':true, 'img':'/bookImages/ironMan.jpg'},
-    {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':false, 'img':'/bookImages/ironMan.jpg'}
-];
+const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250','read':true, 'img':'/bookImages/harry-potter.png'},
+    {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':false, 'img':'/bookImages/Song_of_Ice_and_Fire.jpg'}];
  
 function addBookToLibrary(BookName, author, pages ,read, img, index) {
    
@@ -19,11 +18,7 @@ function addBookToLibrary(BookName, author, pages ,read, img, index) {
     myLibrary.push(newBook)
   }
 
-/* const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250','read':true, 'img':'/bookImages/ironMan.jpg'},
-    {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':true},
-    {'BookName': 'mosese', 'author':'j.r.r Martin', 'pages':'2,550','read':false},
-    {'BookName': 'yesman', 'author':'j.r.r Martin', 'pages':'2,550','read':true}]; */
- 
+
 
 function Book(BookName, author, pages, read, img, index) {
     this.BookName = BookName;
@@ -59,7 +54,7 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
     const bookImg = document.createElement('img');
     bookImg.className = 'book-image';
     bookImg.src= book.img;
-    bookImgContainer.appendChild(bookImg);
+   bookImgContainer.appendChild(bookImg); 
 
     const bookCardInfo = document.createElement('div');
     bookCardInfo.className= 'book-card-content';
@@ -111,7 +106,7 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
         const checkIcon = document.createElement('img');
         checkIcon.src = '/icons/check.png';
         bookRead.appendChild(checkIcon);
-        bookImgContainer.style.backgroundColor = '#A4E0CA';
+        bookImgContainer.style.backgroundColor = 'rgba(80, 218, 167, 0.27)'; 
         bookRead.style.backgroundColor = '#A4E0CA';
         bookRead.style.marginLeft = '60px'
         bookCardActions.appendChild(bookRead);
@@ -129,7 +124,7 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
         bookNotRead.id = `book-not-read-${index}`;
         bookNotRead.dataset.index = index;
         bookNotRead.textContent = 'Mark as read';
-        bookImgContainer.style.backgroundColor = '#D75B69';
+        bookImgContainer.style.backgroundColor = 'rgba(250, 12, 12, 0.27)';
         bookNotRead.style.marginLeft = '30px'
         bookCardActions.appendChild(bookNotRead);
         bookNotRead.addEventListener('click', (event)=>
