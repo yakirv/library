@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Library Page</title>
-    <link rel="stylesheet" href="newStyles.css">
+    <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
     <header class="header">
         <div class="search-box">
             <input type="text" placeholder="Search for a book...">
         </div>
-        <p id="output"></p>
+        <div class="user-container">
+            <img src="/icons/user-avatar.jpg"  id="user-avatar">
+            <p id="hello-user">hello,</p>
+            <p id="user-name">yakirv</p>
+        </div>
+      
     </header>
     <div class="sidebaer">
         <img src="/bookImages/Logo.png" alt="logo">
@@ -22,15 +27,15 @@
                     <button id="home-button">Home</button>
                 </li>
                 <li>
-                    <img src="/icons/home.png" alt="home">
+                    <img src="/icons/account.png" alt="profile">
                     <button id="profile-button">Profile</button>
                 </li>
                 <li>
-                    <img src="/icons/home.png" alt="home">
+                    <img src="/icons/cog.png" alt="settings">
                     <button id="settigs-button">Settings</button>
                 </li>
                 <li>
-                    <img src="/icons/home.png" alt="home">
+                    <img src="/icons/book-open-variant.png" alt="books">
                     <button id="my-libray-button">My Books</button>
                 </li>
             </ul>
@@ -43,7 +48,9 @@
             <button class="add-new-book" id="add-new-book">Add new book</button>
         </div>
         <div class="your-books-list" id="your-books-list"> </div>
-
+        </div>
+        <div class="reccomendations">
+            
         </div>
         
     </main>
