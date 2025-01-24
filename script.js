@@ -8,6 +8,8 @@ const newBookauthor= document.getElementById('new-book-author');
 const newBookPages = document.getElementById('new-book-pages');
 const newBookForm = document.getElementById('newBookForm');
 const myLibraryButton = document.getElementById('my-libray-button');
+const dialogCancelBtn = document.getElementById('cancelBtn');
+const dialogConfirmBtn = document.getElementById('confirmBtn');
 
 const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250','read':true, 'img':'/bookImages/harry-potter.png'},
     {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':false, 'img':'/bookImages/Song_of_Ice_and_Fire.jpg'}];
@@ -50,11 +52,17 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
     const bookImgContainer = document.createElement('div');
     bookImgContainer.className = 'book-image-container';
     bookElement.appendChild(bookImgContainer);
+    
+    const bookPages = document.createElement('p');
+    bookPages.className='book-pages';
+    bookPages.textContent = `${book.pages} pages`
+    bookImgContainer.appendChild(bookPages);
+
 
     const bookImg = document.createElement('img');
     bookImg.className = 'book-image';
     bookImg.src= book.img;
-   bookImgContainer.appendChild(bookImg); 
+    bookImgContainer.appendChild(bookImg);
 
     const bookCardInfo = document.createElement('div');
     bookCardInfo.className= 'book-card-content';
@@ -62,27 +70,22 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
 
     const titleHeader = document.createElement('h4');
     const authorHeader = document.createElement('h4'); 
-    const pagesHeader = document.createElement('h4'); 
     titleHeader.textContent = 'Title:';
     authorHeader.textContent = 'Author:';
-    pagesHeader.textContent = 'No. of pages:'
+    
     
     bookCardInfo.appendChild(titleHeader);
     bookCardInfo.appendChild(authorHeader);
-    bookCardInfo.appendChild(pagesHeader);
 
     const tilteName = document.createElement('p');
     const authorName = document.createElement('p');
-    const numOfPages = document.createElement('p');
     tilteName.className = 'title';
     authorName.className = 'author';
-    numOfPages.className = 'pages';
     tilteName.textContent = book.BookName;
     authorName.textContent = book.author;
-    numOfPages.textContent = book.pages;
     bookCardInfo.appendChild(tilteName);
     bookCardInfo.appendChild(authorName);
-    bookCardInfo.appendChild(numOfPages);
+
     
     const bookCardActions = document.createElement('div');
     bookCardActions.className = 'book-card-actions'; 
@@ -161,7 +164,7 @@ addBookButton.addEventListener("click", () => {
     newBookpopUp.showModal();
   });
 
-  newBookForm.addEventListener('submit', (event)=>
+  dialogConfirmBtn.addEventListener('click', (event)=>
 {
     event.preventDefault();
     const formData = new FormData(newBookForm);
@@ -173,7 +176,13 @@ addBookButton.addEventListener("click", () => {
     const userBookRead = readQuestion === 'on' ? true : false;
     addBookToLibrary(userBookName, userBookAuthor,userBookPages, userBookRead,'/bookImages/book-placeholder.png');
     addBookCard();
+    newBookForm.reset();
     newBookpopUp.close();
+   
+});
+dialogCancelBtn.addEventListener('click', ()=>
+{
+    newBookForm.reset();
 });
 
 
