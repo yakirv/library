@@ -62,20 +62,27 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
 
     const titleHeader = document.createElement('h4');
     const authorHeader = document.createElement('h4'); 
-    titleHeader.textContent = 'Title';
-    authorHeader.textContent = 'Author';
+    const pagesHeader = document.createElement('h4'); 
+    titleHeader.textContent = 'Title:';
+    authorHeader.textContent = 'Author:';
+    pagesHeader.textContent = 'No. of pages:'
     
     bookCardInfo.appendChild(titleHeader);
     bookCardInfo.appendChild(authorHeader);
+    bookCardInfo.appendChild(pagesHeader);
 
     const tilteName = document.createElement('p');
     const authorName = document.createElement('p');
+    const numOfPages = document.createElement('p');
     tilteName.className = 'title';
     authorName.className = 'author';
+    numOfPages.className = 'pages';
     tilteName.textContent = book.BookName;
     authorName.textContent = book.author;
+    numOfPages.textContent = book.pages;
     bookCardInfo.appendChild(tilteName);
     bookCardInfo.appendChild(authorName);
+    bookCardInfo.appendChild(numOfPages);
     
     const bookCardActions = document.createElement('div');
     bookCardActions.className = 'book-card-actions'; 
@@ -106,7 +113,6 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
         const checkIcon = document.createElement('img');
         checkIcon.src = '/icons/check.png';
         bookRead.appendChild(checkIcon);
-        bookImgContainer.style.backgroundColor = 'rgba(80, 218, 167, 0.27)'; 
         bookRead.style.backgroundColor = '#A4E0CA';
         bookRead.style.marginLeft = '60px'
         bookCardActions.appendChild(bookRead);
@@ -124,7 +130,6 @@ function addBookToLibrary(BookName, author, pages, read, img, index) {
         bookNotRead.id = `book-not-read-${index}`;
         bookNotRead.dataset.index = index;
         bookNotRead.textContent = 'Mark as read';
-        bookImgContainer.style.backgroundColor = 'rgba(250, 12, 12, 0.27)';
         bookNotRead.style.marginLeft = '30px'
         bookCardActions.appendChild(bookNotRead);
         bookNotRead.addEventListener('click', (event)=>

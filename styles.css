@@ -236,16 +236,17 @@ li img
     margin: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill;
     
 }
 .book-card-content
 {
     display: grid;
     grid-template-columns: 100px 100px;
-    grid-template-rows: 50px 50px;
+    grid-template-rows: 35px 35px 35px;
     align-items: center;
     font-family: sans-serif;
+    margin: 5px;
 }
 .book-card h4
 {
