@@ -14,31 +14,28 @@ const dialogConfirmBtn = document.getElementById('confirmBtn');
 const myLibrary = [{'BookName': 'Harry Potter', 'author':'j.k Rowling', 'pages':'1,250','read':true, 'img':'/bookImages/harry-potter.png'},
     {'BookName': 'Song of ice and fire', 'author':'j.r.r Martin', 'pages':'2,550','read':false, 'img':'/bookImages/Song_of_Ice_and_Fire.jpg'}];
  
-function addBookToLibrary(BookName, author, pages ,read, img, index) {
-   
-    let newBook = new Book(BookName, author,pages, read ,img, index)
-    myLibrary.push(newBook)
-  }
 
-
-
-function Book(BookName, author, pages, read, img, index) {
-    this.BookName = BookName;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.img = img;
-    this.index = index;
-    
+  class AddBookToLibrary{
+    constructor(bookName, author,pages, read ,img, index)
+    {
+        this.bookName = bookName;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.img = img; 
+        this.index = index;
+    }
+    createBook(){
+     return  {BookName: this.bookName, author: this.author, pages: this.pages, read: this.read, img: this.img}
+    }
+    addToBooksArray(){
+        myLibrary.push(this.createBook())
+    }
 }
-
-function addBookToLibrary(BookName, author, pages, read, img, index) {
-   
-    let newBook = new Book(BookName, author,pages,read, img, index)
-    myLibrary.push(newBook)
-  }
-
-//--------------Show the books from the array--------------
+ 
+//-----------------------------------------------------------
+//--------------Show the books from the array----------------
+//-----------------------------------------------------------
   function addBookCard(){
     const bookElements = document.querySelectorAll('.book-card');
     bookElements.forEach((e)=>
@@ -158,7 +155,10 @@ myLibraryButton.addEventListener('click', ()=> { // my books button
 
 });
 
+//---------------------------------
 //--------------Modal--------------
+//---------------------------------
+
 addBookButton.addEventListener("click", () => {
    
     newBookpopUp.showModal();
@@ -174,7 +174,8 @@ addBookButton.addEventListener("click", () => {
     const readQuestion = formData.get('read-question');
     const uploadFile = formData.get('file-upload').name;
     const userBookRead = readQuestion === 'on' ? true : false;
-    addBookToLibrary(userBookName, userBookAuthor,userBookPages, userBookRead,'/bookImages/book-placeholder.png');
+    let addnewBook = new AddBookToLibrary(userBookName, userBookAuthor,userBookPages, userBookRead,'/bookImages/book-placeholder.png');
+    addnewBook.addToBooksArray();
     addBookCard();
     newBookForm.reset();
     newBookpopUp.close();
