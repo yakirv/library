@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Library Page</title>
+    <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="search-box">
+            <input type="text" placeholder="Search for a book...">
+        </div>
+        <div class="user-container">
+            <img src="/src/icons/user-avatar.jpg"  id="user-avatar">
+            <p id="hello-user">hello,</p>
+            <p id="user-name">yakirv</p>
+        </div>
+      
+    </header>
+    <div class="sidebaer">
+        <img src="/src/icons/Logo.png" alt="logo">
+        <div class="sidebaer-action">
+            <ul class="sidebar-items">
+                <li>
+                    <img src="/src/icons/home.png" alt="home">
+                    <button id="home-button">Home</button>
+                </li>
+                <li>
+                    <img src="/src/icons/blog.png" alt="blog">
+                    <button id="profile-button">Blog</button>
+                </li>
+                <li>
+                    <img src="/src/icons/child.png" alt="kids">
+                    <button id="profile-button">Kids</button>
+                </li>
+                
+                <li>
+                    <img src="/src/icons/cog.png" alt="settings">
+                    <button id="settigs-button">Settings</button>
+                </li>
+                <li>
+                    <img src="/src/icons/book-open-variant.png" alt="books">
+                    <button id="my-libray-button">My Books</button>
+                </li>
+                <li id="logout-bottuns">
+                    <img src="/src/icons/logout.png" alt="logout">
+                    <button id="my-libray-button">Log out</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <main class="main-content">  
+       <div class="your-books">
+        <div class="your-books-header">
+            <h3>Your Books</h3>
+            <button class="add-new-book" id="add-new-book">Add new book</button>
+        </div>
+        <div class="your-books-list" id="your-books-list"> </div>
+        </div>
+        <div class="recommendations">
+            <h3>Recommended books for you</h3>
+          
+                <div id="first-ecommended-book">
+                    <div class="first-review-img">
+                        <img src="/src/bookImages/LiitleLadies.jpeg" id="first-ecommended-book-img">
+                        <img src="/src/icons/5-stars.png" id="first-ecommended-book-rating">
+                    </div>
+                    <h1>Little Women <span style="font-size: 15px;">By Louisa May Alcott</span></h2>
+                <div id="first-ecommended-review">
+                    It is no surprise that Little Women, the adored classic of four devoted sisters, was loosely based on Louisa May Alcott’s own life. In fact, Alcott drew from her own personality to create a heroine unlike any seen before: Jo, willful, headstrong, and undoubtedly the backbone of the March family. Follow the sisters from innocent adolescence to sage adulthood, with all the joy and sorrow of life in between, and fall in love with them and this endearing story. Praised by Madeleine Stern as “a book on the American home, and hence universal in its appeal,” Little Women has been an avidly read tale for generations. This Modern Library edition includes notes that offer more description and insight than those of previous editions.
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Library. All rights reserved.</p>
+    </footer>
+    <dialog id="newBookPopup">
+        <form method="dialog" id='newBookForm'>
+            <h1 id="dialog-header">Add new Book</h1>
+            <div class="dialog-inputs">
+                <label for="new-book-name">Book Name:</label>
+                <input type="text" id="new-book-name" name = "book-name" placeholder="Enter book Name">
+                <label for="new-book-author">Ahutor Name:</label>
+                <input type="text" id="new-book-author" name = "book-author" placeholder="Enter author name">
+                <label for="new-book-pages">Number of pages:</label>
+                <input type="text" id="new-book-pages" name = 'book-pages' placeholder="Enter no. of pages">
+                
+            </div>
+            <input type="file" accept="image/*" id="file-upload" name="file-upload">
+            <div id = 'toggle-contianer'>
+                <p>Did you read this book?</p>
+                <label class="toggle">
+                    <input type="checkbox" name = "read-question">
+                    <span class="slider"></span>
+                </label>
+            </div>
+                <div id = 'dialog-buttons'>
+                <button id ="cancelBtn" value="cancel" >Cancel</button>
+                <button id="confirmBtn" type="submit" value="Confirm">Confirm</button>
+              </div>
+        </form>
+    </dialog>
+    <script src="/src/script.js"></script>
+</body>
+</html>
+
+
